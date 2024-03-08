@@ -21,10 +21,16 @@ jobs:
         profile: default
         toolchain: nightly
     - run: cargo build --release
+    - name: Generate CRC32 checksum
+      run: echo "$(crc32 target/release/libtesty.so)" > artifact_crc.txt
     - uses: actions/upload-artifact@v2
       with:
         name: gmsv_testy_linux.dll
         path: target/release/libtesty.so
+    - uses: actions/upload-artifact@v2
+      with:
+        name: gmsv_testy_linux.dll.txt
+        path: artifact_crc.txt
 
   build-linux64:
     name: Build Linux 64-bit
@@ -41,10 +47,16 @@ jobs:
         profile: default
         toolchain: nightly
     - run: cargo build --release
+    - name: Generate CRC32 checksum
+      run: echo "$(crc32 target/release/libtesty.so)" > artifact_crc.txt
     - uses: actions/upload-artifact@v2
       with:
         name: gmsv_testy_linux64.dll
         path: target/release/libtesty.so
+    - uses: actions/upload-artifact@v2
+      with:
+        name: gmsv_testy_linux64.dll.txt
+        path: artifact_crc.txt
 
   build-win64:
     name: Build Windows 64-bit
@@ -61,10 +73,16 @@ jobs:
         profile: default
         toolchain: nightly
     - run: cargo build --release
+    - name: Generate CRC32 checksum
+      run: echo "$(crc32 target/release/testy.dll)" > artifact_crc.txt
     - uses: actions/upload-artifact@v2
       with:
         name: gmsv_testy_win64.dll
         path: target/release/testy.dll
+    - uses: actions/upload-artifact@v2
+      with:
+        name: gmsv_testy_win64.dll.txt
+        path: artifact_crc.txt
 
   build-win32:
     name: Build Windows 32-bit
@@ -81,7 +99,13 @@ jobs:
         profile: default
         toolchain: nightly
     - run: cargo build --release
+    - name: Generate CRC32 checksum
+      run: echo "$(crc32 target/release/testy.dll)" > artifact_crc.txt
     - uses: actions/upload-artifact@v2
       with:
         name: gmsv_testy_win32.dll
         path: target/release/testy.dll
+    - uses: actions/upload-artifact@v2
+      with:
+        name: gmsv_testy_win32.dll.txt
+        path: artifact_crc.txt
