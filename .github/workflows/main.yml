@@ -1,9 +1,9 @@
-name: Testy build
+name: Testy Build
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build-linux32:
