@@ -1,4 +1,4 @@
-name: Testy Build
+name: Testy build
 
 on:
   push:
