@@ -22,7 +22,7 @@ jobs:
         toolchain: nightly
     - run: cargo build --release
     - name: Generate CRC32 checksum
-      run: echo "$(crc32 target/release/libtesty.so)" > artifact_crc.txt
+      run: echo "$(python3 -c 'import sys,zlib;print(zlib.crc32(open("target/release/libtesty.so","rb").read()))')" > artifact_crc.txt
     - uses: actions/upload-artifact@v2
       with:
         name: gmsv_testy_linux.dll
@@ -48,7 +48,7 @@ jobs:
         toolchain: nightly
     - run: cargo build --release
     - name: Generate CRC32 checksum
-      run: echo "$(crc32 target/release/libtesty.so)" > artifact_crc.txt
+      run: echo "$(python3 -c 'import sys,zlib;print(zlib.crc32(open("target/release/libtesty.so","rb").read()))')" > artifact_crc.txt
     - uses: actions/upload-artifact@v2
       with:
         name: gmsv_testy_linux64.dll
@@ -74,7 +74,7 @@ jobs:
         toolchain: nightly
     - run: cargo build --release
     - name: Generate CRC32 checksum
-      run: echo "$(crc32 target/release/testy.dll)" > artifact_crc.txt
+      run: echo "$(python -c "import sys,zlib;print(zlib.crc32(open('target/release/testy.dll','rb').read()))")" > artifact_crc.txt
     - uses: actions/upload-artifact@v2
       with:
         name: gmsv_testy_win64.dll
@@ -100,7 +100,7 @@ jobs:
         toolchain: nightly
     - run: cargo build --release
     - name: Generate CRC32 checksum
-      run: echo "$(crc32 target/release/testy.dll)" > artifact_crc.txt
+      run: echo "$(python -c "import sys,zlib;print(zlib.crc32(open('target/release/testy.dll','rb').read()))")" > artifact_crc.txt
     - uses: actions/upload-artifact@v2
       with:
         name: gmsv_testy_win32.dll
